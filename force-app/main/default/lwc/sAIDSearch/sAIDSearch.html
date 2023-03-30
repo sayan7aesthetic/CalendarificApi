@@ -1,0 +1,35 @@
+<template>
+     <lightning-card title="SA ID Search">
+        <lightning-layout multiple-rows="true" vertical-align="end">
+            <lightning-layout-item size="6" padding="around-small">
+                 <!--Input text to Search Account-->
+                <lightning-input type="Number" label="Enter ID To Search"
+                    value={searchKey} 
+                    onchange={handelSearchKey}
+                    maxlength="13"> 
+                </lightning-input>
+            </lightning-layout-item >
+
+            <lightning-layout-item size="2" padding="around-small" if:true={flag}>
+                <!--Search Button-->
+                <lightning-button label="Search" variant="brand" onclick={searchSAID}>
+                </lightning-button>
+            </lightning-layout-item>
+        </lightning-layout>
+        <template if:true={holidayList}>
+        <div class="slds-size_3-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-large container"><Strong>Holiday List</Strong>
+                <template iterator:it={holidayList}  for:index="index">
+                    <div class="slds-m-around_medium" key={it.value.Id} data-id={it.index}>                              
+                        <lightning-formatted-rich-text value={it.value.holidayName}>
+                        </lightning-formatted-rich-text>
+                        &nbsp;&nbsp;&nbsp;<b>(Date:</b><lightning-formatted-rich-text value={it.value.holidayDate}>
+                        </lightning-formatted-rich-text><b>)</b>
+                    </div>    
+                </template>
+                
+            </div>
+        </div>
+    </template>
+    </lightning-card>   
+</template>
